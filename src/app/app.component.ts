@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { NavComponent } from './components/nav/nav.component';
+import { DarkModeService } from './services/dark-mode.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [CommonModule, RouterModule, NavComponent],
 })
 export class AppComponent {
-  title = 'hacker-news-angular';
+  @HostBinding('class.dark') get mode() {
+    return this.darkModeService.darkMode();
+  }
+
+  constructor(private darkModeService: DarkModeService) {}
 }
