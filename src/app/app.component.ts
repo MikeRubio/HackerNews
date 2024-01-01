@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NavComponent } from './components/nav/nav.component';
 import { DarkModeService } from './services/dark-mode.service';
 import { HttpClient } from '@angular/common/http';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -19,5 +20,7 @@ export class AppComponent implements OnInit {
   httpClient = inject(HttpClient);
   constructor(private darkModeService: DarkModeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
