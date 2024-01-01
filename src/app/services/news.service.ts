@@ -9,7 +9,7 @@ import { NewsItem } from '../app.model';
 })
 export class NewsService {
   private apiUrl = 'https://hacker-news.firebaseio.com/v0';
-  private batchSize = 20;
+  private batchSize = 10;
   private currentIndex = 0;
   private newsIds: number[] = [];
 

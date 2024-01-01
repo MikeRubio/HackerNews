@@ -1,1 +1,17 @@
-<p>jobs works!</p>
+<div class="p-4 sm:ml-64">
+  <div class="p-4 rounded-lg">
+    <div
+      appInfiniteScroll
+      (scrolled)="loadMore()"
+      class="grid grid-cols gap-4 mb-4"
+    >
+      @for (job of jobs$ | async; track $index) {
+      <app-jobs-card [jobItem]="job"></app-jobs-card>
+      } @if (isLoading) {
+      <div class="flex justify-center">
+        <app-spinner></app-spinner>
+      </div>
+      }
+    </div>
+  </div>
+</div>

@@ -19,6 +19,7 @@ import { SidebarDirective } from './sidebar.directive';
 })
 export class NavComponent {
   @ViewChild('sidebar', { static: false }) sidebarDirective!: SidebarDirective;
+  isSidebarOpen: boolean = false;
 
   constructor(public darkModeService: DarkModeService) {}
 
@@ -26,6 +27,7 @@ export class NavComponent {
     this.darkModeService.toggleDarkMode(state);
   }
   toggleSidebar() {
-    this.sidebarDirective.toggleClass();
+    // this.sidebarDirective.toggleClass();
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 }

@@ -7,6 +7,10 @@
     >
       @for (newsItem of newNews$ | async; track $index) {
       <app-new-card [newsItem]="newsItem" [index]="$index"></app-new-card>
+      }@if (isLoading) {
+      <div class="flex justify-center">
+        <app-spinner></app-spinner>
+      </div>
       }
     </div>
   </div>
