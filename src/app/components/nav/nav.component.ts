@@ -22,8 +22,8 @@ export class NavComponent {
 
   constructor(public darkModeService: DarkModeService) {}
 
-  darkModeToggle() {
-    this.darkModeService.toggleDarkMode();
+  darkModeToggle(state: boolean) {
+    this.darkModeService.toggleDarkMode(state);
   }
   toggleSidebar() {
     this.sidebarDirective.toggleClass();

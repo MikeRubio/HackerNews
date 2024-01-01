@@ -1,9 +1,13 @@
 <div class="p-4 sm:ml-64">
-  <div
-    class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"
-  >
-    <div class="grid grid-cols gap-4 mb-4">
-      <p>new</p>
+  <div class="p-4 rounded-lg">
+    <div
+      appInfiniteScroll
+      (scrolled)="loadMore()"
+      class="grid grid-cols gap-4 mb-4"
+    >
+      @for (newsItem of newNews$ | async; track $index) {
+      <app-new-card [newsItem]="newsItem" [index]="$index"></app-new-card>
+      }
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ export class DarkModeService {
       window.localStorage.setItem('darkMode', JSON.stringify(this.darkMode()));
     });
   }
-  toggleDarkMode() {
-    this.darkMode.set(!this.darkMode());
+  toggleDarkMode(state: boolean) {
+    this.darkMode.set(state);
   }
 }
