@@ -1,73 +1,40 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { NewsService } from './news.service';
-import { ApiService } from './api.service';
-import { NewsItem } from '../app.model';
+import { DateTimeService } from './date-time.service';
 
-describe('NewsService', () => {
-  let service: NewsService;
-  let apiServiceMock: jasmine.SpyObj<ApiService>;
+describe('DateTimeService', () => {
+  let service: DateTimeService;
+  let baseTime: Date;
 
   beforeEach(() => {
-    apiServiceMock = jasmine.createSpyObj('ApiService', ['get']);
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(DateTimeService);
 
-    TestBed.configureTestingModule({
-      providers: [
-        NewsService,
-        { provide: ApiService, useValue: apiServiceMock },
-      ],
-    });
-
-    service = TestBed.inject(NewsService);
+    baseTime = new Date('2023-01-01T12:00:00Z');
+    jasmine.clock().install();
+    jasmine.clock().mockDate(baseTime);
   });
 
-  it('should fetch news IDs', () => {
-    const dummyIds = [1, 2, 3];
-    apiServiceMock.get.and.returnValue(of(dummyIds));
-
-    service.fetchNewsIds('topstories').subscribe((ids) => {
-      expect(ids).toEqual(dummyIds);
-      expect(service['newsIds']).toEqual(dummyIds);
-    });
-
-    expect(apiServiceMock.get).toHaveBeenCalledWith(
-      'https://hacker-news.firebaseio.com/v0/topstories.json'
-    );
+  afterEach(() => {
+    jasmine.clock().uninstall();
   });
 
-  it('should fetch news batch', () => {
-    service['newsIds'] = [1, 2];
-    service['currentIndex'] = 0;
+  it('should return "Just now" for less than 60 seconds', () => {
+    const timestamp = baseTime.getTime() / 1000 - 30;
+    expect(service.getRelativeTime(timestamp)).toBe('Just now');
+  });
 
-    const dummyNewsItems: NewsItem[] = [
-      {
-        by: 'test_one',
-        descendants: 0,
-        id: 1,
-        time: 1704151468,
-        title: 'My Experience Using Shopify',
-      },
-      {
-        by: 'test_2',
-        descendants: 4,
-        id: 2,
-        time: 1704151438,
-        title: 'My Experience Using Spotify',
-      },
-    ];
+  it('should return correct minutes for less than 3600 seconds', () => {
+    const timestamp = baseTime.getTime() / 1000 - 10 * 60;
+    expect(service.getRelativeTime(timestamp)).toBe('10 minutes ago');
+  });
 
-    apiServiceMock.get.and.callFake((url): any => {
-      if (url.includes('/item/')) {
-        const id = Number(url.split('/').pop()?.split('.json')[0]);
-        return of(dummyNewsItems.find((item) => item.id === id));
-      }
-      return of([]);
-    });
+  it('should return correct hours for less than 86400 seconds', () => {
+    const timestamp = baseTime.getTime() / 1000 - 2 * 3600;
+    expect(service.getRelativeTime(timestamp)).toBe('2 hours ago');
+  });
 
-    service.fetchNewsBatch().subscribe((items) => {
-      expect(items.length).toBe(2);
-      expect(items).toEqual(dummyNewsItems);
-      expect(apiServiceMock.get.calls.count()).toBe(2);
-    });
+  it('should return correct days for 86400 seconds or more', () => {
+    const timestamp = baseTime.getTime() / 1000 - 3 * 86400;
+    expect(service.getRelativeTime(timestamp)).toBe('3 days ago');
   });
 });
