@@ -10,13 +10,15 @@ describe('DateTimeService', () => {
     service = TestBed.inject(DateTimeService);
 
     baseTime = new Date('2023-01-01T12:00:00Z');
-    jasmine.clock().install();
-    jasmine.clock().mockDate(baseTime);
+    jest.useFakeTimers();
+    jest.setSystemTime(baseTime);
+    // jasmine.clock().install();
+    // jasmine.clock().mockDate(baseTime);
   });
 
-  afterEach(() => {
-    jasmine.clock().uninstall();
-  });
+  // afterEach(() => {
+  //   jasmine.clock().uninstall();
+  // });
 
   it('should return "Just now" for less than 60 seconds', () => {
     const timestamp = baseTime.getTime() / 1000 - 30;

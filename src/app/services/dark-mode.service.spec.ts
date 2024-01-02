@@ -3,19 +3,18 @@ import { DarkModeService } from './dark-mode.service';
 
 describe('DarkModeService', () => {
   let service: DarkModeService;
+  let storage: Record<string, string> = {};
 
   beforeEach(() => {
-    // Define storage as a Record to accept string keys
-    let storage: Record<string, string> = {};
-
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => {
-      return storage[key] || null;
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: jest.fn((key: string) => storage[key] || null),
+        setItem: jest.fn((key: string, value: string) => {
+          storage[key] = value;
+        }),
+      },
+      writable: true,
     });
-    spyOn(localStorage, 'setItem').and.callFake(
-      (key: string, value: string) => {
-        storage[key] = value;
-      }
-    );
 
     TestBed.configureTestingModule({
       providers: [DarkModeService],
@@ -39,5 +38,10 @@ describe('DarkModeService', () => {
 
     service.toggleDarkMode(false);
     expect(service.darkMode()).toBe(false);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    storage = {};
   });
 });
