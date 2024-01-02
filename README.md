@@ -1,4 +1,4 @@
-[![Angular CI/CD](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml)
+[![Angular CI/CD](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/9940bee3-6624-40a3-b4d9-ec7b98b2b272/deploy-status)](https://app.netlify.com/sites/hacker-news-genesys/deploys)
 
 # Hacker news
 
