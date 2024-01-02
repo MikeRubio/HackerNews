@@ -10,7 +10,7 @@ describe('NewsStoreService', () => {
     service = TestBed.inject(NewsStoreService);
   });
 
-  it('should add an item to top news items', (done: DoneFn) => {
+  it('should add an item to top news items', (done) => {
     const testItem: NewsItem = {
       by: 'elorant',
       descendants: 0,
@@ -29,14 +29,14 @@ describe('NewsStoreService', () => {
     });
   });
 
-  it('should start with an empty array for any news items', (done: DoneFn) => {
+  it('should start with an empty array for any news items', (done) => {
     service.topNewsItems$.subscribe((items) => {
       expect(items.length).toBe(0);
       done();
     });
   });
 
-  it('should handle multiple top news items', (done: DoneFn) => {
+  it('should handle multiple top news items', (done) => {
     const testItems: NewsItem[] = [
       {
         by: 'PaulHoule',

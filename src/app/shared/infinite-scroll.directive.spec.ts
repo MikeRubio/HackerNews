@@ -14,7 +14,7 @@ describe('InfiniteScrollDirective', () => {
   });
 
   it('should emit scrolled event when scrolled to bottom', () => {
-    spyOn(directive.scrolled, 'emit');
+    jest.spyOn(directive.scrolled, 'emit');
     Object.defineProperty(window, 'innerHeight', {
       writable: true,
       configurable: true,
@@ -36,7 +36,7 @@ describe('InfiniteScrollDirective', () => {
   });
 
   it('should not emit scrolled event when not scrolled to bottom', () => {
-    spyOn(directive.scrolled, 'emit');
+    jest.spyOn(directive.scrolled, 'emit');
     Object.defineProperty(window, 'innerHeight', {
       writable: true,
       configurable: true,
@@ -58,7 +58,7 @@ describe('InfiniteScrollDirective', () => {
   });
 
   it('should throttle scroll events', fakeAsync(() => {
-    spyOn(directive.scrolled, 'emit');
+    jest.spyOn(directive.scrolled, 'emit');
     Object.defineProperty(window, 'innerHeight', {
       writable: true,
       configurable: true,
