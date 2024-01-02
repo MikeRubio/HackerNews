@@ -1,4 +1,4 @@
-[![Angular CI/CD](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml)[![pages-build-deployment](https://github.com/MikeRubio/HackerNews/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/MikeRubio/HackerNews/actions/workflows/pages/pages-build-deployment)
+[![Angular CI/CD](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml)[!
 
 # Hacker news
 
@@ -19,9 +19,8 @@ Before running this project, you need to have Node.js and Angular CLI installed 
 
 1. **Clone the Repository**
 
-   ``bash
-   git clone https://github.com/your-username/hacker-news-angular.git
-   cd hacker-news-angular``
+   ``git clone https://github.com/your-username/hacker-news-angular.git``
+   ``cd hacker-news-angular``
 
 2. **Install Dependencies**
     ``npm install``
