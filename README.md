@@ -1,4 +1,4 @@
-[![Angular CI/CD](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml)[!
+[![Angular CI/CD](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/MikeRubio/HackerNews/actions/workflows/angular-ci.yml)
 
 # Hacker news
 
