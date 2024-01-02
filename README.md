@@ -30,3 +30,8 @@ Before running this project, you need to have Node.js and Angular CLI installed 
 
 4. **Running Tests**
    ``npm run test``
+
+### Production build
+
+Currently the app is deployed using netlify and can be reached here: 
+<https://hacker-news-genesys.netlify.app/home>
